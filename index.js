@@ -45,3 +45,38 @@ function register() {
 
     showForm('login')
 }
+
+// function to handle login functionality declared here
+function login() {
+    const emailInput = document.getElementById('login-email')
+    const passwordInput = document.getElementById('login-password')
+
+    if (!emailInput.value) {
+        alert('Email field is required!!')
+        return
+    }
+
+    if (!passwordInput.value) {
+        alert('Password field is required!!')
+        return
+    }
+
+    const user = localStorage.getItem(emailInput.value)
+
+    if (!user) {
+        alert('User does not exists!!')
+        return
+    }
+
+    const parsedUser = JSON.parse(user)
+
+    if (passwordInput.value !== parsedUser.password) {
+        alert('Incorrect password!!')
+        return
+    }
+
+    alert('Login successful!! Welcome aboard, ' + parsedUser.fullName)
+
+    emailInput.value = ''
+    passwordInput.value = ''
+}
