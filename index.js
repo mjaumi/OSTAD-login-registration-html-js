@@ -11,3 +11,37 @@ function showForm(formType) {
         document.getElementById('registration-form').classList.remove('d-none')
     }
 }
+
+// function to handle registration functionality declared here
+function register() {
+    const fullNameInput = document.getElementById('reg-full-name')
+    const emailInput = document.getElementById('reg-email')
+    const passwordInput = document.getElementById('reg-password')
+
+    if (!fullNameInput.value) {
+        alert('Please, enter your full name!!')
+        return
+    }
+
+    if (!emailInput.value) {
+        alert('Please, enter your email!!')
+        return
+    }
+
+    if (!passwordInput.value) {
+        alert('Please, enter your password!!')
+        return
+    }
+
+    const user = { fullName: fullNameInput.value, email: emailInput.value, password: passwordInput.value }
+
+    localStorage.setItem(emailInput.value, JSON.stringify(user))
+
+    alert('Registration successful!! You can now login to your account...')
+
+    fullNameInput.value = ''
+    emailInput.value = ''
+    passwordInput.value = ''
+
+    showForm('login')
+}
